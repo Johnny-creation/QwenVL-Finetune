@@ -4,6 +4,12 @@
 
 **基于Qwen2.5-VL多模态大模型的土地利用智能分析平台**
 
+<br>
+
+![Web界面展示](images/web.png)
+
+<br>
+
 ![Python](https://img.shields.io/badge/Python-3.11-blue)
 ![PyTorch](https://img.shields.io/badge/PyTorch-2.8.0-orange)
 ![Transformers](https://img.shields.io/badge/Transformers-4.56.1-green)
