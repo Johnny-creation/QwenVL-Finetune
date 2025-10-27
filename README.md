@@ -531,6 +531,8 @@ tree /F
         statistic.py
 ```
 
+
+
 ## 环境配置
 
 ```bash
@@ -574,7 +576,7 @@ huggingface-cli download Qwen/Qwen2.5-VL-3B-INstruct \
 
 ## 输出目录说明
 
-![image-20251027132807520](C:\Users\wf200\AppData\Roaming\Typora\typora-user-images\image-20251027132807520.png)
+![image-20251027132807520](image-20251027132807520.png)
 
 如图所示，3b-gene对应原始模型的对话输出，3b-peft-gene对应在MMDU-45k上QLoRA微调之后的对话输出，mark目录存储评分文件。
 
@@ -596,7 +598,7 @@ huggingface-cli download Qwen/Qwen2.5-VL-3B-INstruct \
 
    - 覆盖地理、艺术、电影、交通、医药、动物、社会、建筑、城市、化学等多个方面
 
-     ![image-20251027123007932](C:\Users\wf200\AppData\Roaming\Typora\typora-user-images\image-20251027123007932.png)
+     ![image-20251027123007932](image-20251027123007932.png)
 
    >[laolao77/MMDU at main](https://huggingface.co/datasets/laolao77/MMDU/tree/main)
 
@@ -616,11 +618,11 @@ huggingface-cli download Qwen/Qwen2.5-VL-3B-INstruct \
 
    
 
-## 回答生成💡
+## 💡回答生成
 
 调用model_generation目录下的`QLoRA-Qwen-2.5-VL-3B_gen_ans.py`文件，生成的每个json文件对应Benchmark的每个对话场景的问题和模型回复，图片以本地存储路径的文本方式嵌入对话。
 
-![image-20251027125712739](C:\Users\wf200\AppData\Roaming\Typora\typora-user-images\image-20251027125712739.png)
+![image-20251027125712739](image-20251027125712739.png)
 
 在代码执行的generate方法中根据硬件设备情况调整`max_new_tokens`参数，由于对话轮数平均15轮左右，不同显卡配置应根据情况灵活调整，例如：
 
@@ -632,13 +634,13 @@ huggingface-cli download Qwen/Qwen2.5-VL-3B-INstruct \
 
 #### 回答生成参考示例
 
-![image-20251027125851193](C:\Users\wf200\AppData\Roaming\Typora\typora-user-images\image-20251027125851193.png)
+![image-20251027125851193](image-20251027125851193.png)
 
-![image-20251027125902312](C:\Users\wf200\AppData\Roaming\Typora\typora-user-images\image-20251027125902312.png)
+![image-20251027125902312](image-20251027125902312.png)
 
 
 
-## 智能体评分🎓 
+## 🎓智能体评分 
 
 本评估模块的智能体评分采用本地部署本地推理的方式，完全免费但是模型参数量、推理表现和推理速度一定程度上受限。**对于前一部分每个对话场景生成的json问答文件，结合对话中生成的Reference Answer和Benchmark的Ground Truth，在Scoring rules的原则指导下，对每轮问答进行打分。**
 
@@ -646,21 +648,23 @@ huggingface-cli download Qwen/Qwen2.5-VL-3B-INstruct \
 
 
 
-![image-20251027123924362](C:\Users\wf200\AppData\Roaming\Typora\typora-user-images\image-20251027123924362.png)
+![image-20251027123924362](image-20251027123924362.png)
 
-![image-20251027123940977](C:\Users\wf200\AppData\Roaming\Typora\typora-user-images\image-20251027123940977.png)
+![image-20251027123940977](image-20251027123940977.png)
 
-![image-20251027123930103](C:\Users\wf200\AppData\Roaming\Typora\typora-user-images\image-20251027123930103.png)
+![image-20251027123930103](image-20251027123930103.png)
 
 *注意受到硬件因素的影响，实际评分计算方式作出了调整，通过等权重计算每轮问答-有效评分的平均分的方式，给出综合得分，如果一轮对话内评分模型给出了最终综合得分，按照6倍权重进行计算，但需要注意的是，实际测评中即使上下文长度不做约束也往往不能给出。*
 
 #### 评分生成参考示例
 
-![image-20251027130109477](C:\Users\wf200\AppData\Roaming\Typora\typora-user-images\image-20251027130109477.png)
+![image-20251027130109477](image-20251027130109477.png)
 
-#### 高级功能🎯
+#### 🎯高级功能
 
 > `statistics.py`针对多个对话场景进行综合得分汇总的计算，可以给出更权威更可靠的评分判断。
+
+
 
 ## ❓ 常见问题
 
